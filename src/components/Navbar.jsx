@@ -40,11 +40,11 @@ export default function Navbar() {
             <div className="hidden lg:block bg-navy-950 text-white/70 text-sm py-2">
                 <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
                     <div className="flex items-center gap-6">
-                        <a href="tel:+442081783270" className="flex items-center gap-1.5 hover:text-accent-400 transition-colors">
-                            <Phone size={13} /> 020 8178 3270
+                        <a href="tel:+447717925781" className="flex items-center gap-1.5 hover:text-accent-400 transition-colors">
+                            <Phone size={13} /> +44 7717 925781
                         </a>
                         <span className="text-white/20">|</span>
-                        <a href="https://wa.me/447575853636" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-accent-400 transition-colors">
+                        <a href="https://wa.me/447717925781" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-accent-400 transition-colors">
                             <MessageCircle size={13} /> WhatsApp
                         </a>
                         <span className="text-white/20">|</span>

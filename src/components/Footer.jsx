@@ -70,7 +70,7 @@ export default function Footer() {
                         <h4 className="text-white font-semibold mb-5 text-sm tracking-wide uppercase">Contact</h4>
                         <div className="space-y-3 text-sm">
                             <p>516 Holloway Rd<br />London, N7 6JD, UK</p>
-                            <p><a href="tel:02081783270" className="hover:text-accent-400 transition-colors">020 8178 3270</a></p>
+                            <p><a href="tel:+447717925781" className="hover:text-accent-400 transition-colors">+44 7717 925781</a></p>
                             <p><a href="mailto:admin@huban.co.uk" className="hover:text-accent-400 transition-colors">admin@huban.co.uk</a></p>
                             <p>Mon – Fri: 9:00 AM – 5:30 PM</p>
                         </div>
