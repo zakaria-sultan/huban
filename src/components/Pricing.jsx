@@ -65,77 +65,65 @@ export default function Pricing({ onSelectPlan }) {
         return () => observer.disconnect()
     }, [])
 
-    const handleSelect = (planTitle) => {
-        onSelectPlan(planTitle)
-        const contactSection = document.getElementById('contact')
-        if (contactSection) {
-            contactSection.scrollIntoView({ behavior: 'smooth' })
-        }
-    }
-
     return (
-        <section id="pricing" ref={ref} className="py-24 lg:py-32 bg-[#F8FAFC]">
-            <div className="max-w-7xl mx-auto px-6">
+        <section id="pricing" ref={ref} className="py-24 lg:py-32 bg-white">
+            <div className="max-w-4xl mx-auto px-6">
                 {/* Header */}
-                <div className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                    <span className="inline-block px-4 py-1.5 rounded-full bg-accent-50 text-accent-600 text-sm font-semibold mb-4 tracking-wide">
-                        Flexible Pricing
-                    </span>
+                <div className={`text-center mb-16 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
                     <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 leading-tight">
-                        Transparent, Fixed-Fee Packages
+                        Simple, Transparent Pricing
                     </h2>
-                    <p className="mt-4 text-lg text-navy-600/70 leading-relaxed">
-                        No hidden costs. Choose the plan that fits your business stage.
+                    <p className="mt-4 text-lg text-navy-600/70">
+                        Monthly fixed-fee packages designed for your business stage.
                     </p>
                 </div>
 
-                {/* Pricing Grid */}
-                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                {/* List Layout */}
+                <div className="space-y-4">
                     {plans.map((plan, i) => (
                         <div
                             key={plan.title}
-                            className={`group relative bg-white rounded-3xl p-8 border border-navy-100/50 hover:border-accent-500/30 transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl flex flex-col ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                            className={`group bg-[#F8FAFC] rounded-2xl p-6 flex flex-col sm:flex-row items-center justify-between border border-navy-100/50 hover:border-accent-500/30 transition-all duration-300 ${visible ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-8'}`}
                             style={{ transitionDelay: visible ? `${i * 100}ms` : '0ms' }}
                         >
-                            {plan.popular && (
-                                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-gradient-to-r from-accent-500 to-accent-600 text-white text-[10px] font-bold uppercase tracking-widest px-4 py-1.5 rounded-full shadow-lg">
-                                    Most Popular
+                            <div className="flex flex-col sm:flex-row items-center gap-6 mb-4 sm:mb-0">
+                                <div className="w-12 h-12 rounded-full bg-white flex items-center justify-center shadow-sm border border-navy-100 group-hover:scale-110 transition-transform">
+                                    <Star size={20} className="text-accent-500" />
                                 </div>
-                            )}
-
-                            <div className="mb-8">
-                                <h3 className="text-lg font-bold text-navy-900 mb-2">{plan.title}</h3>
-                                <div className="flex items-baseline gap-1">
-                                    <span className="text-3xl font-extrabold text-navy-900">{plan.price === 'Custom' ? '' : '£'}{plan.price}</span>
-                                    {plan.price !== 'Custom' && <span className="text-navy-400 text-sm font-medium">/mo + VAT</span>}
+                                <div className="text-center sm:text-left">
+                                    <h3 className="text-xl font-bold text-navy-900">{plan.title}</h3>
+                                    <p className="text-navy-500 text-sm">{plan.features.slice(0, 3).join(', ')}...</p>
                                 </div>
                             </div>
 
-                            <ul className="space-y-4 mb-8 flex-grow">
-                                {plan.features.map(feature => (
-                                    <li key={feature} className="flex items-start gap-3 text-sm text-navy-600/80">
-                                        <Check size={16} className="text-accent-500 mt-0.5 shrink-0" />
-                                        <span>{feature}</span>
-                                    </li>
-                                ))}
-                            </ul>
-
-                            <button
-                                onClick={() => handleSelect(plan.title)}
-                                className={`w-full py-3.5 rounded-2xl font-bold transition-all ${plan.popular
-                                    ? 'bg-gradient-to-r from-accent-500 to-accent-600 text-white shadow-lg shadow-accent-500/20 hover:from-accent-400 hover:to-accent-500'
-                                    : 'bg-navy-50 text-navy-900 hover:bg-navy-100'
-                                    }`}
-                            >
-                                Get Started
-                            </button>
+                            <div className="flex items-center gap-8">
+                                <div className="text-right">
+                                    <span className="text-sm text-navy-400 block uppercase tracking-wider font-semibold">Starts From</span>
+                                    <span className="text-2xl font-black text-navy-900">£29<span className="text-sm font-medium text-navy-400">/mo</span></span>
+                                </div>
+                                <button
+                                    onClick={() => {
+                                        onSelectPlan(plan.title)
+                                        document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })
+                                    }}
+                                    className="px-6 py-2.5 bg-navy-900 text-white text-sm font-bold rounded-xl hover:bg-accent-600 transition-colors"
+                                >
+                                    Get Started
+                                </button>
+                            </div>
                         </div>
                     ))}
                 </div>
-                <p className="text-center text-navy-600/40 text-sm mt-12 flex items-center justify-center gap-1.5">
-                    <Star size={14} className="text-amber-400" />
-                    All packages include HMRC-approved software and dedicated support.
-                </p>
+
+                <div className="mt-12 p-8 rounded-3xl bg-navy-950 text-white flex flex-col sm:flex-row items-center justify-between gap-6 transition-all duration-700 delay-500">
+                    <div>
+                        <h4 className="text-xl font-bold mb-2">Need a custom enterprise solution?</h4>
+                        <p className="text-white/60 text-sm">We provide tailored packages for large corporations and non-profits.</p>
+                    </div>
+                    <a href="#contact" className="px-8 py-3 bg-white text-navy-900 font-bold rounded-xl hover:bg-accent-400 hover:text-white transition-all whitespace-nowrap">
+                        Contact Sales
+                    </a>
+                </div>
             </div>
         </section>
     )

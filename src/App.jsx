@@ -4,7 +4,6 @@ import Hero from './components/Hero'
 import Services from './components/Services'
 import About from './components/About'
 import Testimonials from './components/Testimonials'
-import TaxCalculator from './components/TaxCalculator'
 import Pricing from './components/Pricing'
 import News from './components/News'
 import Contact from './components/Contact'
@@ -21,7 +20,6 @@ function App() {
         <Services />
         <About />
         <Testimonials />
-        <TaxCalculator />
         <Pricing onSelectPlan={(plan) => setSelectedPlan(plan)} />
         <News />
         <Contact preselectedPlan={selectedPlan} />

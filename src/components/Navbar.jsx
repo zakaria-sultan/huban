@@ -3,21 +3,20 @@ import { Menu, X, ChevronDown, Shield, Phone, LogIn, MessageCircle, Mail, Lock }
 import Modal from './Modal'
 
 const services = [
-    { name: 'Annual Accounts', href: '#services' },
-    { name: 'VAT Returns', href: '#services' },
-    { name: 'Payroll', href: '#services' },
-    { name: 'Bookkeeping', href: '#services' },
-    { name: 'Corporation Tax', href: '#services' },
-    { name: 'Tax Advice', href: '#services' },
-    { name: 'Capital Gains Tax', href: '#services' },
-    { name: 'Self-Assessment', href: '#services' },
+    { name: 'Company Accounts', href: '#services' },
+    { name: 'Sole Trader Accounts', href: '#services' },
+    { name: 'Property Rental Accounts', href: '#services' },
+    { name: 'Payroll & Pension', href: '#services' },
     { name: 'Company Formation', href: '#services' },
+    { name: 'Self-Assessment', href: '#services' },
+    { name: 'VAT Returns', href: '#services' },
+    { name: 'CIS Support', href: '#services' },
+    { name: 'Cloud Solutions', href: '#services' },
 ]
 
 const navLinks = [
     { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
-    { name: 'Calculator', href: '#calculator' },
     { name: 'Pricing', href: '#pricing' },
     { name: 'News', href: '#news' },
     { name: 'Contact', href: '#contact' },
@@ -40,11 +39,11 @@ export default function Navbar() {
             <div className="hidden lg:block bg-navy-950 text-white/70 text-sm py-2">
                 <div className="max-w-7xl mx-auto px-6 flex justify-between items-center">
                     <div className="flex items-center gap-6">
-                        <a href="tel:+447717925781" className="flex items-center gap-1.5 hover:text-accent-400 transition-colors">
-                            <Phone size={13} /> +44 7717 925781
+                        <a href="tel:+447947128542" className="flex items-center gap-1.5 hover:text-accent-400 transition-colors">
+                            <Phone size={13} /> +44 7947 128542
                         </a>
                         <span className="text-white/20">|</span>
-                        <a href="https://wa.me/447717925781" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-accent-400 transition-colors">
+                        <a href="https://wa.me/447947128542" target="_blank" rel="noopener noreferrer" className="flex items-center gap-1.5 hover:text-accent-400 transition-colors">
                             <MessageCircle size={13} /> WhatsApp
                         </a>
                         <span className="text-white/20">|</span>
@@ -69,13 +68,9 @@ export default function Navbar() {
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="flex items-center justify-between h-16 lg:h-20">
                         {/* Logo */}
-                        <a href="#home" className="flex items-center gap-2.5 group">
-                            <div className="w-12 h-12 rounded-xl bg-white flex items-center justify-center shadow-lg transition-transform group-hover:scale-105 overflow-hidden">
-                                <img src="/logo.jpeg" alt="HUBAN Logo" className="w-full h-full object-cover" />
-                            </div>
-                            <div>
-                                <span className="text-2xl font-black text-white tracking-tighter">HUBAN</span>
-                            </div>
+                        <a href="#home" className="flex flex-col items-start leading-none group">
+                            <span className="text-3xl font-black text-white tracking-tighter">HUBAN</span>
+                            <span className="text-[10px] font-medium text-accent-400 uppercase tracking-[0.2em] mt-0.5">Chartered Accountants</span>
                         </a>
 
                         {/* Desktop nav */}

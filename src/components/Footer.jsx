@@ -35,14 +35,10 @@ export default function Footer() {
                 <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
                     {/* Brand */}
                     <div className="space-y-5">
-                        <a href="#home" className="flex items-center gap-2.5">
-                            <div className="w-10 h-10 rounded-xl bg-white flex items-center justify-center overflow-hidden">
-                                <img src="/logo.jpeg" alt="HUBAN Logo" className="w-full h-full object-cover" />
-                            </div>
-                            <div>
-                                <span className="text-xl font-bold text-white">HUBAN</span>
-                            </div>
-                        </a>
+                        <div className="flex flex-col items-start leading-none mb-6">
+                            <span className="text-3xl font-black text-white tracking-tighter">HUBAN</span>
+                            <span className="text-[10px] font-medium text-accent-400 uppercase tracking-[0.2em] mt-0.5">Chartered Accountants</span>
+                        </div>
                         <p className="text-sm leading-relaxed">Your trusted partner in business solutions and financial advisory. Expert services for the modern enterprise.</p>
                         <div className="flex gap-3">
                             {[Facebook, Twitter, Linkedin, Instagram].map((Icon, i) => (
@@ -70,7 +66,7 @@ export default function Footer() {
                         <h4 className="text-white font-semibold mb-5 text-sm tracking-wide uppercase">Contact</h4>
                         <div className="space-y-3 text-sm">
                             <p>516 Holloway Rd<br />London, N7 6JD, UK</p>
-                            <p><a href="tel:+447717925781" className="hover:text-accent-400 transition-colors">+44 7717 925781</a></p>
+                            <p><a href="tel:+447947128542" className="hover:text-accent-400 transition-colors">+44 7947 128542</a></p>
                             <p><a href="mailto:admin@huban.co.uk" className="hover:text-accent-400 transition-colors">admin@huban.co.uk</a></p>
                             <p>Mon – Fri: 9:00 AM – 5:30 PM</p>
                         </div>

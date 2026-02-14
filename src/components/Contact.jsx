@@ -38,7 +38,7 @@ export default function Contact({ preselectedPlan }) {
         if (method === 'whatsapp') {
             const message = `Hello HUBAN Team,\n\nI'm interested in your services.\n\nName: ${formData.name}\nEmail: ${formData.email}\nService: ${formData.service}\n\nMessage: ${formData.message}`
             const encodedMessage = encodeURIComponent(message)
-            const whatsappUrl = `https://wa.me/447717925781?text=${encodedMessage}`
+            const whatsappUrl = `https://wa.me/447947128542?text=${encodedMessage}`
             window.open(whatsappUrl, '_blank')
         } else {
             const subject = encodeURIComponent(`New Inquiry: ${formData.service || 'General Inquiry'}`)
@@ -165,7 +165,7 @@ export default function Contact({ preselectedPlan }) {
                                     </div>
                                     <div>
                                         <p className="text-white/40 text-sm font-medium uppercase tracking-wider mb-1">Call Us</p>
-                                        <a href="tel:+447717925781" className="text-lg font-bold hover:text-accent-400 transition-colors">+44 7717 925781</a>
+                                        <a href="tel:+447947128542" className="text-lg font-bold hover:text-accent-400 transition-colors">+44 7947 128542</a>
                                     </div>
                                 </div>
 

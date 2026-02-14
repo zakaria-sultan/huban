@@ -4,8 +4,8 @@ import { Award, Users, Target, Heart, CheckCircle } from 'lucide-react'
 const stats = [
     { label: 'Happy Clients', value: 500, suffix: '+', icon: Users },
     { label: 'Years Experience', value: 15, suffix: '+', icon: Award },
-    { label: 'Returns Filed', value: 1000, suffix: '+', icon: Target },
-    { label: 'Satisfaction Rate', value: 98, suffix: '%', icon: Heart },
+    { label: 'Returns Filed', value: 1200, suffix: '+', icon: Target },
+    { label: 'Client Retention', value: 99, suffix: '%', icon: Heart },
 ]
 
 const pillars = [
@@ -70,7 +70,7 @@ export default function About() {
                                 About Us
                             </span>
                             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 leading-tight">
-                                We Have <span className="gradient-text">15+ Years</span> of Experience
+                                Your Trusted <span className="gradient-text">Chartered</span> Partner
                             </h2>
                             <p className="text-lg text-navy-600/70 leading-relaxed">
                                 At our firm, we do more than just crunch numbers — we deliver clarity, confidence, and results.
