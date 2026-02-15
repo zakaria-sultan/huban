@@ -8,16 +8,29 @@ import ServicesPage from './pages/ServicesPage'
 import NewsPage from './pages/NewsPage'
 import ContactPage from './pages/ContactPage'
 
+import OurHistoryPage from './pages/OurHistoryPage'
+import WhyChooseUsPage from './pages/WhyChooseUsPage'
+
+import ServiceDetailPage from './pages/ServiceDetailPage'
+
+// Assuming ScrollToTop is a component you have or will create
+const ScrollToTop = () => null; // Placeholder for ScrollToTop component
+
 function App() {
   return (
     <div className="min-h-screen bg-white">
+      <ScrollToTop />
+      {/* Navbar is not inside Routes, but uses Link so it must be inside BrowserRouter which is in main.jsx */}
       <Navbar />
       <main>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/our-history" element={<OurHistoryPage />} />
+          <Route path="/why-choose-us" element={<WhyChooseUsPage />} />
           <Route path="/pricing" element={<PricingPage />} />
           <Route path="/services" element={<ServicesPage />} />
+          <Route path="/services/:slug" element={<ServiceDetailPage />} />
           <Route path="/news" element={<NewsPage />} />
           <Route path="/contact" element={<ContactPage />} />
         </Routes>

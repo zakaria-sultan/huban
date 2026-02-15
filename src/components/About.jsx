@@ -71,14 +71,10 @@ export default function About() {
                             Your Trusted <span className="gradient-text">Chartered</span> Partner
                         </h2>
                         <p className="text-lg text-navy-600/70 leading-relaxed">
-                            At our firm, we do more than just crunch numbers — we deliver clarity, confidence, and results.
-                            Our team of experienced tax professionals stays ahead of changing laws and regulations to ensure
-                            you're always compliant and protected.
+                            Huban Accountants is a professional firm led by experienced finance professionals, offering expert accounting, taxation, and business advisory services. We deliver high-quality, tailored financial solutions to help businesses and individuals achieve sustainable success.
                         </p>
                         <p className="text-navy-600/60 leading-relaxed">
-                            Whether you're an individual, entrepreneur, or established business, we help you legally
-                            minimize tax liabilities and maximize financial efficiency. Focus on running and growing
-                            your business — leave the financial management to us.
+                            We adopt a proactive, client-focused approach to ensure you remain compliant, efficient, and financially strong. Whether you are an entrepreneur or an established business, we are dedicated to handling your financial matters with professionalism and care.
                         </p>
 
                         <div className="grid sm:grid-cols-2 gap-8 pt-8">

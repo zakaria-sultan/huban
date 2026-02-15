@@ -2,21 +2,16 @@ import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
 import { Menu, X, ChevronDown, Phone, MessageCircle, Mail } from 'lucide-react'
 
-const services = [
-    { name: 'Company Accounts', href: '/services' },
-    { name: 'Sole Trader Accounts', href: '/services' },
-    { name: 'Property Rental Accounts', href: '/services' },
-    { name: 'Payroll & Pension', href: '/services' },
-    { name: 'Company Formation', href: '/services' },
-    { name: 'Self-Assessment', href: '/services' },
-    { name: 'VAT Returns', href: '/services' },
-    { name: 'CIS Support', href: '/services' },
-    { name: 'Cloud Solutions', href: '/services' },
+import { servicesData } from '../data/servicesData'
+
+const aboutLinks = [
+    { name: 'About Us', href: '/about' },
+    { name: 'Our History', href: '/our-history' },
+    { name: 'Why Choose Us', href: '/why-choose-us' },
 ]
 
 const navLinks = [
     { name: 'Home', href: '/' },
-    { name: 'About', href: '/about' },
     { name: 'Pricing', href: '/pricing' },
     { name: 'News', href: '/news' },
     { name: 'Contact', href: '/contact' },
@@ -74,7 +69,7 @@ export default function Navbar() {
                         </Link>
 
                         <div className="hidden lg:flex items-center gap-8">
-                            {navLinks.slice(0, 3).map((link) => (
+                            {navLinks.slice(0, 1).map((link) => (
                                 <Link
                                     key={link.name}
                                     to={link.href}
@@ -86,6 +81,30 @@ export default function Navbar() {
 
                             <div className="relative group">
                                 <Link
+                                    to="/about"
+                                    className={`text-[11px] font-black uppercase tracking-widest transition-all hover:text-accent-500 py-4 flex items-center gap-1 ${scrolled || !isHome ? 'text-navy-900' : 'text-white/70 hover:text-white'}`}
+                                >
+                                    About <ChevronDown size={14} className="group-hover:rotate-180 transition-transform duration-300" />
+                                </Link>
+
+                                <div className="absolute top-full left-1/2 -translate-x-1/2 w-[220px] bg-white rounded-2xl shadow-xl border border-navy-100 p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
+                                    <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white rotate-45 border-t border-l border-navy-100" />
+                                    <div className="relative space-y-1">
+                                        {aboutLinks.slice(1).map((link) => (
+                                            <Link
+                                                key={link.name}
+                                                to={link.href}
+                                                className="block px-4 py-2.5 text-sm font-bold text-navy-800 hover:text-accent-500 hover:bg-navy-50 rounded-xl transition-colors"
+                                            >
+                                                {link.name}
+                                            </Link>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div className="relative group">
+                                <Link
                                     to="/services"
                                     className={`text-[11px] font-black uppercase tracking-widest transition-all hover:text-accent-500 py-4 flex items-center gap-1 ${scrolled || !isHome ? 'text-navy-900' : 'text-white/70 hover:text-white'}`}
                                 >
@@ -93,23 +112,35 @@ export default function Navbar() {
                                 </Link>
 
                                 {/* Dropdown Menu */}
-                                <div className="absolute top-full left-1/2 -translate-x-1/2 w-[280px] bg-white rounded-2xl shadow-xl border border-navy-100 p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
+                                <div className="absolute top-full left-1/2 -translate-x-1/2 w-[300px] bg-white rounded-2xl shadow-xl border border-navy-100 p-2 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
                                     <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white rotate-45 border-t border-l border-navy-100" />
-                                    <div className="relative space-y-1">
-                                        {services.map((service) => (
-                                            <Link
-                                                key={service.name}
-                                                to={service.href}
-                                                className="block px-4 py-2.5 text-sm font-bold text-navy-800 hover:text-accent-500 hover:bg-navy-50 rounded-xl transition-colors"
-                                            >
-                                                {service.name}
-                                            </Link>
+                                    <div className="relative p-2">
+                                        {servicesData.map((category) => (
+                                            <div key={category.title} className="group/cat relative">
+                                                <div className="flex items-center justify-between px-4 py-3 text-sm font-bold text-navy-800 hover:text-accent-500 hover:bg-navy-50 rounded-xl cursor-pointer transition-colors">
+                                                    {category.title}
+                                                    <ChevronDown size={14} className="-rotate-90 text-navy-400 group-hover/cat:text-accent-500" />
+                                                </div>
+
+                                                {/* Nested Menu */}
+                                                <div className="absolute top-0 right-full mr-2 w-[280px] bg-white rounded-2xl shadow-xl border border-navy-100 p-2 opacity-0 invisible group-hover/cat:opacity-100 group-hover/cat:visible transition-all duration-200 transform translate-x-4 group-hover/cat:translate-x-0">
+                                                    {category.services.map(service => (
+                                                        <Link
+                                                            key={service.slug}
+                                                            to={`/services/${service.slug}`}
+                                                            className="block px-4 py-2.5 text-xs font-bold text-navy-700 hover:text-accent-500 hover:bg-navy-50 rounded-xl transition-colors"
+                                                        >
+                                                            {service.title}
+                                                        </Link>
+                                                    ))}
+                                                </div>
+                                            </div>
                                         ))}
                                     </div>
                                 </div>
                             </div>
 
-                            {navLinks.slice(3).map((link) => (
+                            {navLinks.slice(1).map((link) => (
                                 <Link
                                     key={link.name}
                                     to={link.href}
@@ -155,22 +186,45 @@ export default function Navbar() {
                             </Link>
 
                             <div className="block p-5 bg-white/5 rounded-2xl">
-                                <span className="text-lg text-white font-black uppercase tracking-widest block mb-4">Services</span>
+                                <span className="text-lg text-white font-black uppercase tracking-widest block mb-4">About</span>
                                 <div className="space-y-3 pl-4 border-l border-white/10">
-                                    {services.map(s => (
+                                    {aboutLinks.map(link => (
                                         <Link
-                                            key={s.name}
-                                            to={s.href}
+                                            key={link.name}
+                                            to={link.href}
                                             onClick={() => setMobileOpen(false)}
                                             className="block text-sm text-white/70 hover:text-white"
                                         >
-                                            {s.name}
+                                            {link.name}
                                         </Link>
+                                    ))}
+                                </div>
+                            </div>
+
+                            <div className="block p-5 bg-white/5 rounded-2xl">
+                                <span className="text-lg text-white font-black uppercase tracking-widest block mb-4">Services</span>
+                                <div className="space-y-4 pl-4 border-l border-white/10">
+                                    {servicesData.map(category => (
+                                        <div key={category.title}>
+                                            <span className="text-sm font-bold text-white/50 uppercase tracking-wider block mb-2">{category.title}</span>
+                                            <div className="pl-4 space-y-2 border-l border-white/5">
+                                                {category.services.map(s => (
+                                                    <Link
+                                                        key={s.slug}
+                                                        to={`/services/${s.slug}`}
+                                                        onClick={() => setMobileOpen(false)}
+                                                        className="block text-sm text-white/80 hover:text-white transition-colors"
+                                                    >
+                                                        {s.title}
+                                                    </Link>
+                                                ))}
+                                            </div>
+                                        </div>
                                     ))}
                                     <Link
                                         to="/services"
                                         onClick={() => setMobileOpen(false)}
-                                        className="block text-sm text-accent-400 font-bold mt-2"
+                                        className="block text-sm text-accent-400 font-bold mt-4"
                                     >
                                         View All Services
                                     </Link>
