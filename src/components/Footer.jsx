@@ -1,91 +1,123 @@
-import { Shield, ArrowUp, Facebook, Twitter, Linkedin, Instagram } from 'lucide-react'
+import { ArrowUp, Facebook, Twitter, Linkedin, Instagram, Phone, Mail, MapPin } from 'lucide-react'
 
 const serviceLinks = [
-    'Annual Accounts', 'VAT Returns', 'Payroll', 'Bookkeeping',
-    'Corporation Tax', 'Tax Advice', 'Capital Gains Tax', 'Self-Assessment', 'Company Formation'
+    { name: 'Annual Accounts', href: '#services' },
+    { name: 'VAT Returns', href: '#services' },
+    { name: 'Payroll & Pension', href: '#services' },
+    { name: 'Bookkeeping', href: '#services' },
+    { name: 'Corporation Tax', href: '#services' },
+    { name: 'Tax Advice', href: '#services' },
 ]
 
 const quickLinks = [
-    { name: 'Home', href: '#home' }, { name: 'About Us', href: '#about' },
-    { name: 'Services', href: '#services' }, { name: 'Tax Calculator', href: '#calculator' },
-    { name: 'Pricing', href: '#pricing' }, { name: 'Contact', href: '#contact' },
+    { name: 'Home', href: '#home' },
+    { name: 'About Us', href: '#about' },
+    { name: 'Pricing', href: '#pricing' },
+    { name: 'News', href: '#news' },
+    { name: 'Contact', href: '#contact' },
 ]
 
-const legalLinks = ['Terms of Use', 'Privacy Policy', 'Cookie Policy']
+// Removed legal links as per user request
 
 export default function Footer() {
     const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
 
     return (
-        <footer className="bg-navy-950 text-white/60 relative">
-            {/* CTA Band */}
-            <div className="bg-gradient-to-r from-accent-700 to-accent-600">
-                <div className="max-w-7xl mx-auto px-6 py-10 flex flex-col sm:flex-row items-center justify-between gap-6">
-                    <div>
-                        <h3 className="text-2xl font-bold text-white">Ready to get started?</h3>
-                        <p className="text-accent-100/80 mt-1">Book a free consultation and let us handle the numbers.</p>
-                    </div>
-                    <a href="#contact" className="px-8 py-3.5 bg-white text-accent-700 font-bold rounded-full hover:bg-accent-50 transition-colors shadow-lg whitespace-nowrap">
-                        Book Free Consultation
-                    </a>
-                </div>
-            </div>
-
-            <div className="max-w-7xl mx-auto px-6 py-16">
-                <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-10">
-                    {/* Brand */}
-                    <div className="space-y-5">
-                        <div className="flex flex-col items-start leading-none mb-6">
-                            <span className="text-3xl font-black text-white tracking-tighter">HUBAN</span>
-                            <span className="text-[10px] font-medium text-accent-400 uppercase tracking-[0.2em] mt-0.5">Chartered Accountants</span>
+        <footer className="bg-navy-950 text-white/50 pt-24 border-t border-white/5">
+            <div className="max-w-7xl mx-auto px-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 lg:gap-12 mb-20">
+                    {/* Brand Column */}
+                    <div className="space-y-8">
+                        <div className="flex items-center gap-3 active:scale-95 transition-transform cursor-pointer" onClick={scrollTop}>
+                            <div className="w-12 h-12 rounded-xl overflow-hidden shadow-2xl border border-white/10">
+                                <img src="/logo.jpeg" alt="HUBAN Logo" className="w-full h-full object-cover" />
+                            </div>
+                            <div className="flex flex-col items-start leading-none">
+                                <span className="text-2xl font-black text-white tracking-tighter">HUBAN</span>
+                                <span className="text-[10px] font-bold text-accent-500 uppercase tracking-[0.2em] mt-0.5">Chartered Accountants</span>
+                            </div>
                         </div>
-                        <p className="text-sm leading-relaxed">Your trusted partner in business solutions and financial advisory. Expert services for the modern enterprise.</p>
-                        <div className="flex gap-3">
+                        <p className="text-sm leading-relaxed max-w-xs block">
+                            UK leading digital financial advisors. We provide strategic accounting and tax excellence for the modern enterprise.
+                        </p>
+                        <div className="flex gap-4">
                             {[Facebook, Twitter, Linkedin, Instagram].map((Icon, i) => (
-                                <a key={i} href="#" className="w-9 h-9 rounded-xl bg-white/5 hover:bg-accent-500 flex items-center justify-center transition-all hover:-translate-y-0.5">
-                                    <Icon size={16} className="text-white/60 hover:text-white" />
+                                <a key={i} href="#" className="w-10 h-10 rounded-xl bg-white/5 hover:bg-accent-500 flex items-center justify-center transition-all hover:-translate-y-1">
+                                    <Icon size={18} className="text-white/60 hover:text-white" />
                                 </a>
                             ))}
                         </div>
                     </div>
 
-                    {/* Quick Links */}
+                    {/* Solutions Column */}
                     <div>
-                        <h4 className="text-white font-semibold mb-5 text-sm tracking-wide uppercase">Quick Links</h4>
-                        <ul className="space-y-3">{quickLinks.map(l => <li key={l.name}><a href={l.href} className="text-sm hover:text-accent-400 transition-colors">{l.name}</a></li>)}</ul>
+                        <h4 className="text-white font-black mb-8 text-sm tracking-widest uppercase">Services</h4>
+                        <ul className="space-y-4">
+                            {serviceLinks.map(l => (
+                                <li key={l.name}>
+                                    <a href={l.href} className="text-sm hover:text-accent-500 transition-colors flex items-center gap-2 group">
+                                        <div className="w-1 h-1 rounded-full bg-accent-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                        {l.name}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
                     </div>
 
-                    {/* Services */}
+                    {/* Quick Access Column */}
                     <div>
-                        <h4 className="text-white font-semibold mb-5 text-sm tracking-wide uppercase">Services</h4>
-                        <ul className="space-y-3">{serviceLinks.map(s => <li key={s}><a href="#services" className="text-sm hover:text-accent-400 transition-colors">{s}</a></li>)}</ul>
+                        <h4 className="text-white font-black mb-8 text-sm tracking-widest uppercase">Quick Links</h4>
+                        <ul className="space-y-4">
+                            {quickLinks.map(l => (
+                                <li key={l.name}>
+                                    <a href={l.href} className="text-sm hover:text-accent-500 transition-colors flex items-center gap-2 group">
+                                        <div className="w-1 h-1 rounded-full bg-accent-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                        {l.name}
+                                    </a>
+                                </li>
+                            ))}
+                        </ul>
                     </div>
 
-                    {/* Contact */}
+                    {/* Contact Column */}
                     <div>
-                        <h4 className="text-white font-semibold mb-5 text-sm tracking-wide uppercase">Contact</h4>
-                        <div className="space-y-3 text-sm">
-                            <p>516 Holloway Rd<br />London, N7 6JD, UK</p>
-                            <p><a href="tel:+447947128542" className="hover:text-accent-400 transition-colors">+44 7947 128542</a></p>
-                            <p><a href="mailto:admin@huban.co.uk" className="hover:text-accent-400 transition-colors">admin@huban.co.uk</a></p>
-                            <p>Mon – Fri: 9:00 AM – 5:30 PM</p>
+                        <h4 className="text-white font-black mb-8 text-sm tracking-widest uppercase">Contact Us</h4>
+                        <div className="space-y-6 text-sm">
+                            <div className="flex gap-4">
+                                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center shrink-0">
+                                    <MapPin size={18} className="text-accent-500" />
+                                </div>
+                                <span>516 Holloway Rd<br />London, N7 6JD, UK</span>
+                            </div>
+                            <div className="flex gap-4">
+                                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center shrink-0">
+                                    <Phone size={18} className="text-accent-500" />
+                                </div>
+                                <a href="tel:+447947128542" className="hover:text-accent-500 transition-colors">+44 7947 128542</a>
+                            </div>
+                            <div className="flex gap-4">
+                                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center shrink-0">
+                                    <Mail size={18} className="text-accent-500" />
+                                </div>
+                                <a href="mailto:admin@huban.co.uk" className="hover:text-accent-500 transition-colors">admin@huban.co.uk</a>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            {/* Bottom bar */}
-            <div className="border-t border-white/5">
-                <div className="max-w-7xl mx-auto px-6 py-6 flex flex-col sm:flex-row items-center justify-between gap-4">
-                    <p className="text-xs">© 2026 HUBAN. All rights reserved.</p>
-                    <div className="flex items-center gap-6">
-                    </div>
+                {/* Bottom Bar */}
+                <div className="py-10 border-t border-white/5 flex flex-col md:flex-row items-center justify-center gap-8 text-xs font-bold tracking-widest uppercase">
+                    <p>© 2026 HUBAN. All rights reserved.</p>
                 </div>
             </div>
 
-            {/* Scroll to top */}
-            <button onClick={scrollTop} className="fixed bottom-8 right-8 w-12 h-12 bg-accent-500 hover:bg-accent-400 text-white rounded-full shadow-2xl shadow-accent-500/30 flex items-center justify-center transition-all hover:-translate-y-1 z-50" aria-label="Scroll to top">
-                <ArrowUp size={20} />
+            {/* Scroll to Top */}
+            <button
+                onClick={scrollTop}
+                className="fixed bottom-10 right-10 w-14 h-14 bg-accent-500 hover:bg-accent-600 text-white rounded-2xl shadow-2xl shadow-accent-500/40 flex items-center justify-center transition-all hover:-translate-y-2 z-50 group active:scale-95"
+                aria-label="Scroll to top"
+            >
+                <ArrowUp size={24} strokeWidth={3} className="group-hover:-translate-y-1 transition-transform" />
             </button>
         </footer>
     )

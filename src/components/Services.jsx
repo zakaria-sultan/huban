@@ -251,53 +251,48 @@ export default function Services() {
         <section id="services" ref={ref} className="py-24 lg:py-32 bg-[#F8FAFC] relative">
             <div className="max-w-7xl mx-auto px-6">
                 {/* Header */}
-                <div className={`text-center max-w-3xl mx-auto mb-16 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
-                    <span className="inline-block px-4 py-1.5 rounded-full bg-accent-50 text-accent-600 text-sm font-semibold mb-4 tracking-wide">
-                        Our Services
+                <div className={`text-center max-w-3xl mx-auto mb-20 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
+                    <span className="inline-block px-4 py-1.5 rounded-full bg-accent-500/10 text-accent-500 text-sm font-black mb-4 tracking-widest uppercase">
+                        Our Expertise
                     </span>
-                    <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 leading-tight">
-                        Comprehensive Financial Solutions
+                    <h2 className="text-4xl lg:text-5xl font-black text-navy-900 leading-tight mb-6">
+                        Full Suite of Professional <br /> Accounting Services
                     </h2>
-                    <p className="mt-4 text-lg text-navy-600/70 leading-relaxed">
-                        From day-to-day bookkeeping to strategic tax planning — everything you need to stay compliant and grow your business.
-                    </p>
+                    <div className="w-20 h-1.5 bg-accent-500 mx-auto rounded-full" />
                 </div>
 
                 {/* Grid */}
-                <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-12">
                     {services.map((service, i) => {
                         const Icon = service.icon
                         return (
                             <div
                                 key={service.title}
-                                className={`group relative bg-white rounded-3xl p-8 border border-navy-100/50 hover:border-transparent transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl ${service.shadow} cursor-pointer ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
-                                style={{ transitionDelay: visible ? `${i * 80}ms` : '0ms' }}
+                                className={`group relative bg-white rounded-2xl p-10 border border-navy-100/50 hover:border-transparent transition-all duration-500 hover:-translate-y-2 hover:shadow-2xl hover:shadow-navy-900/10 cursor-pointer text-center ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}
+                                style={{ transitionDelay: visible ? `${i * 100}ms` : '0ms' }}
                                 onClick={() => setSelectedService(service)}
                             >
                                 {/* Icon */}
-                                <div className={`w-14 h-14 rounded-2xl bg-gradient-to-br ${service.color} flex items-center justify-center mb-6 shadow-lg ${service.shadow} group-hover:scale-110 transition-transform duration-300`}>
-                                    <Icon size={24} className="text-white" />
+                                <div className={`w-20 h-20 mx-auto rounded-full bg-accent-500/5 flex items-center justify-center mb-8 shadow-sm group-hover:bg-accent-500 transition-colors duration-500`}>
+                                    <Icon size={32} className="text-accent-500 group-hover:text-white transition-colors" />
                                 </div>
 
-                                <h3 className="text-xl font-bold text-navy-900 mb-3 group-hover:text-accent-600 transition-colors">
+                                <h3 className="text-2xl font-black text-navy-900 mb-4 transition-colors">
                                     {service.title}
                                 </h3>
-                                <p className="text-navy-600/60 leading-relaxed text-sm mb-6">
+                                <p className="text-navy-500 leading-relaxed text-sm mb-8 line-clamp-2">
                                     {service.description}
                                 </p>
 
                                 <button
-                                    className="inline-flex items-center gap-1.5 text-accent-600 text-sm font-semibold group-hover:gap-3 transition-all"
+                                    className="inline-flex items-center gap-2 text-accent-500 text-sm font-black tracking-widest uppercase hover:gap-4 transition-all"
                                     onClick={(e) => {
                                         e.stopPropagation()
                                         setSelectedService(service)
                                     }}
                                 >
-                                    Read More <ArrowRight size={14} />
+                                    Explore <ArrowRight size={16} strokeWidth={3} />
                                 </button>
-
-                                {/* Hover gradient border */}
-                                <div className={`absolute inset-0 rounded-3xl bg-gradient-to-br ${service.color} opacity-0 group-hover:opacity-[0.05] transition-opacity -z-10`} />
                             </div>
                         )
                     })}
