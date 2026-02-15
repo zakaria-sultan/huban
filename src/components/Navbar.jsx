@@ -226,7 +226,7 @@ export default function Navbar() {
                                         onClick={() => setMobileOpen(false)}
                                         className="block text-sm text-accent-400 font-bold mt-4"
                                     >
-                                        View All Services
+                                        View All Servicess
                                     </Link>
                                 </div>
                             </div>
