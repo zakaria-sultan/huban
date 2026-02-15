@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import {
     FileText, Receipt, CreditCard, BookOpen, Building2,
     Lightbulb, TrendingUp, User, Landmark, ArrowRight, CheckCircle2, Shield
@@ -248,7 +249,7 @@ export default function Services() {
     }, [])
 
     return (
-        <section id="services" ref={ref} className="py-24 lg:py-32 bg-[#F8FAFC] relative">
+        <section id="services" ref={ref} className="py-12 lg:py-20 bg-[#F8FAFC] relative">
             <div className="max-w-7xl mx-auto px-6">
                 {/* Header */}
                 <div className={`text-center max-w-3xl mx-auto mb-20 transition-all duration-700 ${visible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'}`}>
@@ -310,13 +311,13 @@ export default function Services() {
                     </div>
                     {selectedService?.fullContent}
                     <div className="pt-6 border-t border-navy-50">
-                        <a
-                            href="#contact"
+                        <Link
+                            to="/contact"
                             onClick={() => setSelectedService(null)}
                             className="inline-flex items-center justify-center w-full sm:w-auto px-8 py-3.5 bg-gradient-to-r from-accent-500 to-accent-600 text-white font-bold rounded-2xl shadow-lg shadow-accent-500/20 hover:from-accent-400 hover:to-accent-500 transition-all hover:-translate-y-0.5"
                         >
                             Enquire About This Service
-                        </a>
+                        </Link>
                     </div>
                 </div>
             </Modal>

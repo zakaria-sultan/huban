@@ -1,20 +1,21 @@
+import { Link } from 'react-router-dom'
 import { ArrowUp, Facebook, Twitter, Linkedin, Instagram, Phone, Mail, MapPin } from 'lucide-react'
 
 const serviceLinks = [
-    { name: 'Annual Accounts', href: '#services' },
-    { name: 'VAT Returns', href: '#services' },
-    { name: 'Payroll & Pension', href: '#services' },
-    { name: 'Bookkeeping', href: '#services' },
-    { name: 'Corporation Tax', href: '#services' },
-    { name: 'Tax Advice', href: '#services' },
+    { name: 'Annual Accounts', href: '/services' },
+    { name: 'VAT Returns', href: '/services' },
+    { name: 'Payroll & Pension', href: '/services' },
+    { name: 'Bookkeeping', href: '/services' },
+    { name: 'Corporation Tax', href: '/services' },
+    { name: 'Tax Advice', href: '/services' },
 ]
 
 const quickLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About Us', href: '#about' },
-    { name: 'Pricing', href: '#pricing' },
-    { name: 'News', href: '#news' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Home', href: '/' },
+    { name: 'About Us', href: '/about' },
+    { name: 'Pricing', href: '/pricing' },
+    { name: 'News', href: '/news' },
+    { name: 'Contact', href: '/contact' },
 ]
 
 // Removed legal links as per user request
@@ -28,7 +29,7 @@ export default function Footer() {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 lg:gap-12 mb-20">
                     {/* Brand Column */}
                     <div className="space-y-8">
-                        <div className="flex items-center gap-3 active:scale-95 transition-transform cursor-pointer" onClick={scrollTop}>
+                        <Link to="/" className="flex items-center gap-3 active:scale-95 transition-transform">
                             <div className="w-12 h-12 rounded-xl overflow-hidden shadow-2xl border border-white/10">
                                 <img src="/logo.jpeg" alt="HUBAN Logo" className="w-full h-full object-cover" />
                             </div>
@@ -36,7 +37,7 @@ export default function Footer() {
                                 <span className="text-2xl font-black text-white tracking-tighter">HUBAN</span>
                                 <span className="text-[10px] font-bold text-accent-500 uppercase tracking-[0.2em] mt-0.5">Chartered Accountants</span>
                             </div>
-                        </div>
+                        </Link>
                         <p className="text-sm leading-relaxed max-w-xs block">
                             UK leading digital financial advisors. We provide strategic accounting and tax excellence for the modern enterprise.
                         </p>
@@ -55,10 +56,10 @@ export default function Footer() {
                         <ul className="space-y-4">
                             {serviceLinks.map(l => (
                                 <li key={l.name}>
-                                    <a href={l.href} className="text-sm hover:text-accent-500 transition-colors flex items-center gap-2 group">
+                                    <Link to={l.href} className="text-sm hover:text-accent-500 transition-colors flex items-center gap-2 group">
                                         <div className="w-1 h-1 rounded-full bg-accent-500 opacity-0 group-hover:opacity-100 transition-opacity" />
                                         {l.name}
-                                    </a>
+                                    </Link>
                                 </li>
                             ))}
                         </ul>
@@ -70,10 +71,10 @@ export default function Footer() {
                         <ul className="space-y-4">
                             {quickLinks.map(l => (
                                 <li key={l.name}>
-                                    <a href={l.href} className="text-sm hover:text-accent-500 transition-colors flex items-center gap-2 group">
+                                    <Link to={l.href} className="text-sm hover:text-accent-500 transition-colors flex items-center gap-2 group">
                                         <div className="w-1 h-1 rounded-full bg-accent-500 opacity-0 group-hover:opacity-100 transition-opacity" />
                                         {l.name}
-                                    </a>
+                                    </Link>
                                 </li>
                             ))}
                         </ul>

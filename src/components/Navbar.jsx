@@ -1,29 +1,32 @@
 import { useState, useEffect } from 'react'
+import { Link, useLocation } from 'react-router-dom'
 import { Menu, X, ChevronDown, Phone, MessageCircle, Mail } from 'lucide-react'
 
 const services = [
-    { name: 'Company Accounts', href: '#services' },
-    { name: 'Sole Trader Accounts', href: '#services' },
-    { name: 'Property Rental Accounts', href: '#services' },
-    { name: 'Payroll & Pension', href: '#services' },
-    { name: 'Company Formation', href: '#services' },
-    { name: 'Self-Assessment', href: '#services' },
-    { name: 'VAT Returns', href: '#services' },
-    { name: 'CIS Support', href: '#services' },
-    { name: 'Cloud Solutions', href: '#services' },
+    { name: 'Company Accounts', href: '/services' },
+    { name: 'Sole Trader Accounts', href: '/services' },
+    { name: 'Property Rental Accounts', href: '/services' },
+    { name: 'Payroll & Pension', href: '/services' },
+    { name: 'Company Formation', href: '/services' },
+    { name: 'Self-Assessment', href: '/services' },
+    { name: 'VAT Returns', href: '/services' },
+    { name: 'CIS Support', href: '/services' },
+    { name: 'Cloud Solutions', href: '/services' },
 ]
 
 const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About', href: '#about' },
-    { name: 'Pricing', href: '#pricing' },
-    { name: 'News', href: '#news' },
-    { name: 'Contact', href: '#contact' },
+    { name: 'Home', href: '/' },
+    { name: 'About', href: '/about' },
+    { name: 'Pricing', href: '/pricing' },
+    { name: 'News', href: '/news' },
+    { name: 'Contact', href: '/contact' },
 ]
 
 export default function Navbar() {
     const [scrolled, setScrolled] = useState(false)
     const [mobileOpen, setMobileOpen] = useState(false)
+    const location = useLocation()
+    const isHome = location.pathname === '/'
 
     useEffect(() => {
         const handleScroll = () => setScrolled(window.scrollY > 20)
@@ -54,76 +57,84 @@ export default function Navbar() {
             </div>
 
             <nav
-                className={`fixed w-full z-50 transition-all duration-300 ${scrolled || mobileOpen ? 'bg-white shadow-md py-3' : 'bg-transparent py-5'
-                    } ${!scrolled && !mobileOpen ? 'lg:top-10' : 'top-0'}`}
+                className={`fixed w-full z-[100] transition-all duration-300 ${scrolled || mobileOpen || !isHome ? 'bg-white shadow-md py-3' : 'bg-transparent py-5'
+                    } ${!scrolled && !mobileOpen && isHome ? 'lg:top-10' : 'top-0'}`}
             >
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="flex justify-between items-center">
                         {/* Logo */}
-                        <a href="#" className="flex items-center gap-3 active:scale-95 transition-transform group">
+                        <Link to="/" className="flex items-center gap-3 active:scale-95 transition-transform group">
                             <div className="w-10 h-10 lg:w-11 lg:h-11 rounded-xl overflow-hidden shadow-2xl border border-white/20 group-hover:border-accent-400 transition-colors">
                                 <img src="/logo.jpeg" alt="HUBAN Logo" className="w-full h-full object-cover" />
                             </div>
                             <div className="flex flex-col items-start leading-none">
-                                <span className={`text-xl lg:text-2xl font-black tracking-widest uppercase transition-colors ${scrolled ? 'text-navy-900' : 'text-white'}`}>HUBAN</span>
-                                <span className={`text-[8px] font-black uppercase tracking-[0.3em] mt-1 transition-colors ${scrolled ? 'text-accent-600' : 'text-accent-400'}`}>Chartered Accountants</span>
+                                <span className={`text-xl lg:text-2xl font-black tracking-widest uppercase transition-colors ${scrolled || !isHome ? 'text-navy-900' : 'text-white'}`}>HUBAN</span>
+                                <span className={`text-[8px] font-black uppercase tracking-[0.3em] mt-1 transition-colors ${scrolled || !isHome ? 'text-accent-600' : 'text-accent-400'}`}>Chartered Accountants</span>
                             </div>
-                        </a>
+                        </Link>
 
-                        {/* Desktop Menu */}
                         <div className="hidden lg:flex items-center gap-8">
-                            {navLinks.slice(0, 2).map((link) => (
-                                <a
+                            {navLinks.slice(0, 3).map((link) => (
+                                <Link
                                     key={link.name}
-                                    href={link.href}
-                                    className={`text-[11px] font-black uppercase tracking-widest transition-all hover:text-accent-500 ${scrolled ? 'text-navy-900' : 'text-white/70 hover:text-white'}`}
+                                    to={link.href}
+                                    className={`text-[11px] font-black uppercase tracking-widest transition-all hover:text-accent-500 ${scrolled || !isHome ? 'text-navy-900' : 'text-white/70 hover:text-white'}`}
                                 >
                                     {link.name}
-                                </a>
+                                </Link>
                             ))}
 
-                            {/* Services Dropdown */}
-                            <div className="relative group/s">
-                                <button className={`text-[11px] font-black uppercase tracking-widest transition-all hover:text-accent-500 flex items-center gap-1 ${scrolled ? 'text-navy-900' : 'text-white/70 hover:text-white'}`}>
-                                    Services <ChevronDown size={12} className="group-hover/s:rotate-180 transition-transform" />
-                                </button>
-                                <div className="absolute top-full left-1/2 -translate-x-1/2 mt-4 w-64 bg-white border border-navy-50 rounded-3xl shadow-[0_30px_60px_rgba(0,0,0,0.1)] py-4 opacity-0 invisible group-hover/s:opacity-100 group-hover/s:visible transition-all duration-300">
-                                    <div className="grid grid-cols-1 divide-y divide-navy-50">
-                                        {services.map((s) => (
-                                            <a key={s.name} href={s.href} className="px-6 py-3 text-[10px] text-navy-600 hover:text-accent-500 hover:bg-navy-50 font-black uppercase tracking-widest transition-all">
-                                                {s.name}
-                                            </a>
+                            <div className="relative group">
+                                <Link
+                                    to="/services"
+                                    className={`text-[11px] font-black uppercase tracking-widest transition-all hover:text-accent-500 py-4 flex items-center gap-1 ${scrolled || !isHome ? 'text-navy-900' : 'text-white/70 hover:text-white'}`}
+                                >
+                                    Services <ChevronDown size={14} className="group-hover:rotate-180 transition-transform duration-300" />
+                                </Link>
+
+                                {/* Dropdown Menu */}
+                                <div className="absolute top-full left-1/2 -translate-x-1/2 w-[280px] bg-white rounded-2xl shadow-xl border border-navy-100 p-4 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 transform translate-y-4 group-hover:translate-y-0">
+                                    <div className="absolute -top-2 left-1/2 -translate-x-1/2 w-4 h-4 bg-white rotate-45 border-t border-l border-navy-100" />
+                                    <div className="relative space-y-1">
+                                        {services.map((service) => (
+                                            <Link
+                                                key={service.name}
+                                                to={service.href}
+                                                className="block px-4 py-2.5 text-sm font-bold text-navy-800 hover:text-accent-500 hover:bg-navy-50 rounded-xl transition-colors"
+                                            >
+                                                {service.name}
+                                            </Link>
                                         ))}
                                     </div>
                                 </div>
                             </div>
 
-                            {navLinks.slice(2).map((link) => (
-                                <a
+                            {navLinks.slice(3).map((link) => (
+                                <Link
                                     key={link.name}
-                                    href={link.href}
-                                    className={`text-[11px] font-black uppercase tracking-widest transition-all hover:text-accent-500 ${scrolled ? 'text-navy-900' : 'text-white/70 hover:text-white'}`}
+                                    to={link.href}
+                                    className={`text-[11px] font-black uppercase tracking-widest transition-all hover:text-accent-500 ${scrolled || !isHome ? 'text-navy-900' : 'text-white/70 hover:text-white'}`}
                                 >
                                     {link.name}
-                                </a>
+                                </Link>
                             ))}
                         </div>
 
                         {/* CTA */}
                         <div className="hidden lg:flex items-center gap-3">
-                            <a
-                                href="tel:+447947128542"
-                                className={`px-8 py-3.5 text-[11px] font-black uppercase tracking-widest rounded-full transition-all hover:-translate-y-1 active:scale-95 border ${scrolled
+                            <Link
+                                to="/contact"
+                                className={`px-8 py-3.5 text-[11px] font-black uppercase tracking-widest rounded-full transition-all hover:-translate-y-1 active:scale-95 border ${scrolled || !isHome
                                     ? 'bg-navy-900 text-white hover:bg-accent-600 border-navy-900'
                                     : 'bg-white/10 text-white hover:bg-white/20 border-white/20 backdrop-blur-md'}`}
                             >
                                 Get Started
-                            </a>
+                            </Link>
                         </div>
 
                         {/* Mobile Toggle */}
                         <button
-                            className="lg:hidden text-white p-2"
+                            className={`lg:hidden p-2 ${scrolled || !isHome ? 'text-navy-900' : 'text-white'}`}
                             onClick={() => setMobileOpen(!mobileOpen)}
                         >
                             {mobileOpen ? <X size={28} /> : <Menu size={28} />}
@@ -135,15 +146,46 @@ export default function Navbar() {
                 {mobileOpen && (
                     <div className="lg:hidden fixed inset-0 top-[64px] bg-navy-950 z-40 p-6 animate-fade-in overflow-y-auto">
                         <div className="space-y-4">
-                            {navLinks.map((link) => (
-                                <a
+                            <Link
+                                to="/"
+                                onClick={() => setMobileOpen(false)}
+                                className="block p-5 text-lg text-white font-black uppercase tracking-widest bg-white/5 rounded-2xl"
+                            >
+                                Home
+                            </Link>
+
+                            <div className="block p-5 bg-white/5 rounded-2xl">
+                                <span className="text-lg text-white font-black uppercase tracking-widest block mb-4">Services</span>
+                                <div className="space-y-3 pl-4 border-l border-white/10">
+                                    {services.map(s => (
+                                        <Link
+                                            key={s.name}
+                                            to={s.href}
+                                            onClick={() => setMobileOpen(false)}
+                                            className="block text-sm text-white/70 hover:text-white"
+                                        >
+                                            {s.name}
+                                        </Link>
+                                    ))}
+                                    <Link
+                                        to="/services"
+                                        onClick={() => setMobileOpen(false)}
+                                        className="block text-sm text-accent-400 font-bold mt-2"
+                                    >
+                                        View All Services
+                                    </Link>
+                                </div>
+                            </div>
+
+                            {navLinks.slice(1).map((link) => (
+                                <Link
                                     key={link.name}
-                                    href={link.href}
+                                    to={link.href}
                                     onClick={() => setMobileOpen(false)}
                                     className="block p-5 text-lg text-white font-black uppercase tracking-widest bg-white/5 rounded-2xl"
                                 >
                                     {link.name}
-                                </a>
+                                </Link>
                             ))}
                             <div className="pt-6 grid grid-cols-2 gap-3">
                                 <a href="tel:+447947128542" className="flex items-center justify-center gap-2 p-5 bg-white/5 rounded-2xl text-white font-bold">
