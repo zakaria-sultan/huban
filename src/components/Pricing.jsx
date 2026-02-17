@@ -69,7 +69,7 @@ export default function Pricing({ onSelectPlan }) {
   }, []);
 
   return (
-    <section id="pricing" ref={ref} className="py-12 lg:py-20 bg-white">
+    <section id="pricing" ref={ref} className="py-10 lg:py-16 bg-white">
       <div className="max-w-4xl mx-auto px-6">
         {/* Header */}
         <div

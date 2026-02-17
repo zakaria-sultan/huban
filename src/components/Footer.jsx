@@ -1,20 +1,12 @@
 import { Link } from 'react-router-dom'
 import { ArrowUp, Facebook, Twitter, Linkedin, Instagram, Phone, Mail, MapPin } from 'lucide-react'
-
-const serviceLinks = [
-    { name: 'Annual Accounts', href: '/services' },
-    { name: 'VAT Returns', href: '/services' },
-    { name: 'Payroll & Pension', href: '/services' },
-    { name: 'Bookkeeping', href: '/services' },
-    { name: 'Corporation Tax', href: '/services' },
-    { name: 'Tax Advice', href: '/services' },
-]
+import { servicesData } from '../data/servicesData'
 
 const quickLinks = [
     { name: 'Home', href: '/' },
     { name: 'About Us', href: '/about' },
-    { name: 'Pricing', href: '/pricing' },
-    { name: 'News', href: '/news' },
+    { name: 'Our History', href: '/our-history' },
+    { name: 'Why Choose Us', href: '/why-choose-us' },
     { name: 'Contact', href: '/contact' },
 ]
 
@@ -23,13 +15,17 @@ const quickLinks = [
 export default function Footer() {
     const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
 
+    // Flatten services for footer usage or split by category
+    const accountancyServices = servicesData.find(c => c.slug === 'accountancy')?.services || []
+    const taxServices = servicesData.find(c => c.slug === 'tax-advisory')?.services || []
+
     return (
-        <footer className="bg-navy-950 text-white/50 pt-24 border-t border-white/5">
+        <footer className="bg-navy-950 text-white/50 pt-16 border-t border-white/5">
             <div className="max-w-7xl mx-auto px-6">
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 lg:gap-12 mb-20">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16 lg:gap-8 mb-12">
                     {/* Brand Column */}
                     <div className="space-y-8">
-                        <Link to="/" className="flex items-center gap-3 active:scale-95 transition-transform">
+                        <Link to="/" onClick={() => window.scrollTo(0, 0)} className="flex items-center gap-3 active:scale-95 transition-transform">
                             <div className="w-12 h-12 rounded-xl overflow-hidden shadow-2xl border border-white/10">
                                 <img src="/logo.jpeg" alt="HUBAN Logo" className="w-full h-full object-cover" />
                             </div>
@@ -39,7 +35,7 @@ export default function Footer() {
                             </div>
                         </Link>
                         <p className="text-sm leading-relaxed max-w-xs block">
-                            UK leading digital financial advisors. We provide strategic accounting and tax excellence for the modern enterprise.
+                            Huban Accountants is a professional firm led by experienced finance professionals. We provide comprehensive accounting, tax advisory, and business consultancy services tailored to help businesses grow and stay compliant.
                         </p>
                         <div className="flex gap-4">
                             {[Facebook, Twitter, Linkedin, Instagram].map((Icon, i) => (
@@ -50,57 +46,64 @@ export default function Footer() {
                         </div>
                     </div>
 
-                    {/* Solutions Column */}
+                    {/* Accountancy Services Column */}
                     <div>
-                        <h4 className="text-white font-black mb-8 text-sm tracking-widest uppercase">Services</h4>
-                        <ul className="space-y-4">
-                            {serviceLinks.map(l => (
-                                <li key={l.name}>
-                                    <Link to={l.href} className="text-sm hover:text-accent-500 transition-colors flex items-center gap-2 group">
+                        <h4 className="text-white font-black mb-8 text-sm tracking-widest uppercase">Accountancy</h4>
+                        <ul className="space-y-3">
+                            {accountancyServices.slice(0, 6).map(s => (
+                                <li key={s.slug}>
+                                    <Link to={`/services/${s.slug}`} onClick={() => window.scrollTo(0, 0)} className="text-sm hover:text-accent-500 transition-colors flex items-center gap-2 group">
                                         <div className="w-1 h-1 rounded-full bg-accent-500 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                        {l.name}
+                                        {s.title}
+                                    </Link>
+                                </li>
+                            ))}
+                            <li>
+                                <Link to="/services" className="text-xs font-bold text-accent-500 hover:text-white mt-2 inline-block">View All Services →</Link>
+                            </li>
+                        </ul>
+                    </div>
+
+                    {/* Tax & Advisory Column */}
+                    <div>
+                        <h4 className="text-white font-black mb-8 text-sm tracking-widest uppercase">Tax & Advisory</h4>
+                        <ul className="space-y-3">
+                            {taxServices.slice(0, 6).map(s => (
+                                <li key={s.slug}>
+                                    <Link to={`/services/${s.slug}`} onClick={() => window.scrollTo(0, 0)} className="text-sm hover:text-accent-500 transition-colors flex items-center gap-2 group">
+                                        <div className="w-1 h-1 rounded-full bg-accent-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                        {s.title}
                                     </Link>
                                 </li>
                             ))}
                         </ul>
                     </div>
 
-                    {/* Quick Access Column */}
-                    <div>
-                        <h4 className="text-white font-black mb-8 text-sm tracking-widest uppercase">Quick Links</h4>
-                        <ul className="space-y-4">
-                            {quickLinks.map(l => (
-                                <li key={l.name}>
-                                    <Link to={l.href} className="text-sm hover:text-accent-500 transition-colors flex items-center gap-2 group">
-                                        <div className="w-1 h-1 rounded-full bg-accent-500 opacity-0 group-hover:opacity-100 transition-opacity" />
-                                        {l.name}
-                                    </Link>
-                                </li>
-                            ))}
-                        </ul>
-                    </div>
+                    {/* Quick Access / Contact Column */}
+                    <div className="space-y-10">
+                        <div>
+                            <h4 className="text-white font-black mb-6 text-sm tracking-widest uppercase">Quick Links</h4>
+                            <ul className="space-y-3">
+                                {quickLinks.map(l => (
+                                    <li key={l.name}>
+                                        <Link to={l.href} onClick={() => window.scrollTo(0, 0)} className="text-sm hover:text-accent-500 transition-colors flex items-center gap-2 group">
+                                            <div className="w-1 h-1 rounded-full bg-accent-500 opacity-0 group-hover:opacity-100 transition-opacity" />
+                                            {l.name}
+                                        </Link>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
 
-                    {/* Contact Column */}
-                    <div>
-                        <h4 className="text-white font-black mb-8 text-sm tracking-widest uppercase">Contact Us</h4>
-                        <div className="space-y-6 text-sm">
-                            <div className="flex gap-4">
-                                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center shrink-0">
-                                    <MapPin size={18} className="text-accent-500" />
-                                </div>
-                                <span>516 Holloway Rd<br />London, N7 6JD, UK</span>
-                            </div>
-                            <div className="flex gap-4">
-                                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center shrink-0">
-                                    <Phone size={18} className="text-accent-500" />
-                                </div>
-                                <a href="tel:+447947128542" className="hover:text-accent-500 transition-colors">+44 7947 128542</a>
-                            </div>
-                            <div className="flex gap-4">
-                                <div className="w-10 h-10 rounded-xl bg-white/5 flex items-center justify-center shrink-0">
-                                    <Mail size={18} className="text-accent-500" />
-                                </div>
-                                <a href="mailto:admin@huban.co.uk" className="hover:text-accent-500 transition-colors">admin@huban.co.uk</a>
+                        <div>
+                            <h4 className="text-white font-black mb-6 text-sm tracking-widest uppercase">Contact</h4>
+                            <div className="space-y-4 text-sm">
+                                <a href="mailto:admin@huban.co.uk" className="flex items-center gap-3 hover:text-white transition-colors">
+                                    <Mail size={14} className="text-accent-500" /> admin@huban.co.uk
+                                </a>
+                                <a href="tel:+447947128542" className="flex items-center gap-3 hover:text-white transition-colors">
+                                    <Phone size={14} className="text-accent-500" /> +44 7947 128542
+                                </a>
                             </div>
                         </div>
                     </div>

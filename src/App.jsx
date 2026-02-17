@@ -13,8 +13,7 @@ import WhyChooseUsPage from './pages/WhyChooseUsPage'
 
 import ServiceDetailPage from './pages/ServiceDetailPage'
 
-// Assuming ScrollToTop is a component you have or will create
-const ScrollToTop = () => null; // Placeholder for ScrollToTop component
+import ScrollToTop from './components/ScrollToTop'
 
 function App() {
   return (

@@ -1,140 +1,142 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { ArrowRight, ChevronRight, CheckCircle2 } from 'lucide-react'
+import { ArrowRight, ChevronRight, BarChart2, PieChart, ShieldCheck } from 'lucide-react'
 
 const slides = [
     {
-        title: "Your Trusted Partner in Accounting & Tax Advisory.",
-        highlight: "Accounting,",
-        description: "We help you legally minimize tax liabilities and maximize financial efficiency. Focus on running your business — leave the financial management to us.",
-        image: "https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&q=80&w=1200",
-        color: "from-[#0ea5e9] to-[#6366f1]"
+        id: 0,
+        label: "Cash flow forecasting",
+        icon: BarChart2,
+        image: "/hero-cashflow.jpg",
+        desc: "Predict future financial positions with accuracy."
     },
     {
-        title: "Strategic Financial Planning for Growth.",
-        highlight: "Growth.",
-        description: "Data-driven insights to scale your operations. We provide the clarity you need to make confident business decisions.",
-        image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=1200",
-        color: "from-accent-400 to-accent-600"
+        id: 1,
+        label: "Market-leading BI tools",
+        icon: PieChart,
+        image: "/hero-bi.jpg",
+        desc: "Interactive dashboards that drive decision making."
     },
     {
-        title: "Expert Payroll & Compliance Solutions.",
-        highlight: "Compliance.",
-        description: "Never worry about HMRC deadlines again. Our automated systems ensure perfect accuracy and timely filings.",
-        image: "https://images.unsplash.com/photo-1556761175-5973dc0f32e7?auto=format&fit=crop&q=80&w=1200",
-        color: "from-emerald-400 to-emerald-600"
+        id: 2,
+        label: "Tax optimization strategies",
+        icon: ShieldCheck,
+        image: "/hero-tax.jpg",
+        desc: "Minimize liabilities and maximize efficiency."
     }
 ]
 
 export default function Hero() {
-    const [currentSlide, setCurrentSlide] = useState(0)
-    const [isAutoPlaying, setIsAutoPlaying] = useState(true)
+    const [activeTab, setActiveTab] = useState(0)
 
+    // Auto-rotate tabs
     useEffect(() => {
-        if (!isAutoPlaying) return
         const interval = setInterval(() => {
-            setCurrentSlide((prev) => (prev + 1) % slides.length)
+            setActiveTab((prev) => (prev + 1) % slides.length)
         }, 5000)
         return () => clearInterval(interval)
-    }, [isAutoPlaying])
+    }, [])
 
     return (
-        <section className="relative min-h-screen flex items-center bg-navy-950 overflow-hidden pt-32 lg:pt-48">
-            {/* Background Effects */}
+        <section className="relative min-h-screen flex items-center bg-navy-950 pt-32 lg:pt-48 pb-10 overflow-hidden">
+            {/* Background elements */}
             <div className="absolute inset-0 z-0">
-                <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-accent-500/20 rounded-full blur-[120px] mix-blend-screen animate-pulse" />
-                <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-blue-500/10 rounded-full blur-[120px] mix-blend-screen" />
+                <div className="absolute top-0 right-0 w-[50%] h-[50%] bg-accent-500/10 blur-[120px] rounded-full mix-blend-screen" />
+                <div className="absolute bottom-0 left-0 w-[50%] h-[50%] bg-blue-600/10 blur-[120px] rounded-full mix-blend-screen" />
             </div>
 
-            <div className="max-w-7xl mx-auto px-6 w-full relative z-10 grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-                {/* Left - Text Content */}
-                <div className="space-y-8">
-                    {/* Slide Content */}
-                    <div className="relative min-h-[300px]">
-                        {slides.map((slide, index) => (
-                            <div
-                                key={index}
-                                className={`absolute inset-0 transition-all duration-1000 ease-in-out ${index === currentSlide ? 'opacity-100 translate-y-0 relative' : 'opacity-0 translate-y-8 absolute pointer-events-none'}`}
-                            >
-                                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-accent-400 text-xs font-bold uppercase tracking-widest mb-6 backdrop-blur-sm">
-                                    <span className="w-2 h-2 rounded-full bg-accent-500 animate-pulse" />
-                                    HUBAN Chartered Accountants
+            <div className="max-w-7xl mx-auto px-6 w-full relative z-10">
+                <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+
+                    {/* Left Content */}
+                    <div className="space-y-10">
+                        <div className="space-y-6">
+                            <h1 className="text-5xl lg:text-7xl font-black text-white leading-[1.1] tracking-tight">
+                                Data-Driven <br />
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-accent-400 to-accent-200">
+                                    Strategic Advisory
+                                </span>
+                            </h1>
+                            <p className="text-lg text-navy-100/80 leading-relaxed max-w-xl">
+                                Leverage our business intelligence tools to unlock hidden growth opportunities. We transform your financial data into actionable strategies that fuel sustainable success.
+                            </p>
+                        </div>
+
+                        {/* Interactive List / Tabs */}
+                        <div className="space-y-3">
+                            {slides.map((slide, index) => (
+                                <div
+                                    key={slide.id}
+                                    onClick={() => setActiveTab(index)}
+                                    className={`group cursor-pointer p-4 rounded-2xl transition-all duration-500 border relative overflow-hidden ${activeTab === index
+                                        ? 'bg-white/10 border-accent-500/50 shadow-lg shadow-accent-500/10'
+                                        : 'bg-transparent border-transparent hover:bg-white/5'
+                                        }`}
+                                >
+                                    {/* Progress Bar Background for Active Tab */}
+                                    {activeTab === index && (
+                                        <div className="absolute bottom-0 left-0 h-1 bg-accent-500 transition-all duration-[5000ms] ease-linear w-full opacity-30" />
+                                    )}
+
+                                    <div className="flex items-center justify-between">
+                                        <div className="flex items-center gap-4">
+                                            <div className={`p-2.5 rounded-xl transition-colors duration-300 ${activeTab === index ? 'bg-accent-500 text-white' : 'bg-white/10 text-white/50 group-hover:bg-white/20 group-hover:text-white'}`}>
+                                                <slide.icon size={20} />
+                                            </div>
+                                            <div>
+                                                <h3 className={`font-bold text-lg transition-colors ${activeTab === index ? 'text-white' : 'text-white/60 group-hover:text-white'}`}>
+                                                    {slide.label}
+                                                </h3>
+                                                <div className={`overflow-hidden transition-all duration-500 ${activeTab === index ? 'max-h-20 opacity-100 mt-1' : 'max-h-0 opacity-0'}`}>
+                                                    <p className="text-sm text-accent-100/80">{slide.desc}</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <ChevronRight size={18} className={`transition-all duration-300 ${activeTab === index ? 'text-accent-400 rotate-90 opacity-100' : 'text-white/20 opacity-0 -translate-x-2'}`} />
+                                    </div>
                                 </div>
+                            ))}
+                        </div>
 
-                                <h1 className="text-4xl sm:text-5xl lg:text-7xl font-black text-white leading-[1.1] tracking-tight mb-6">
-                                    {slide.title.replace(slide.highlight, "")}
-                                    
-                                </h1>
-
-                                <p className="text-lg text-white/60 leading-relaxed max-w-xl">
-                                    {slide.description}
-                                </p>
-                            </div>
-                        ))}
+                        <div>
+                            <Link
+                                to="/services"
+                                className="inline-flex items-center gap-2 px-8 py-4 bg-accent-500 hover:bg-accent-600 text-white font-bold rounded-full transition-all hover:scale-105 shadow-lg shadow-accent-500/25"
+                            >
+                                Learn More <ArrowRight size={18} />
+                            </Link>
+                        </div>
                     </div>
 
-                    {/* Action Buttons */}
-                    <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                        <Link
-                            to="/contact"
-                            className="px-8 py-4 bg-accent-500 text-white font-bold rounded-xl hover:bg-accent-600 transition-all hover:translate-x-1 flex items-center justify-center gap-2 shadow-lg shadow-accent-500/25"
-                        >
-                            Get Started <ArrowRight size={18} />
-                        </Link>
-                        <Link
-                            to="/services"
-                            className="px-8 py-4 bg-white/5 text-white font-bold rounded-xl hover:bg-white/10 border border-white/10 transition-all hover:-translate-y-1 flex items-center justify-center gap-2 backdrop-blur-sm"
-                        >
-                            Our Services
-                        </Link>
-                    </div>
-
-                    {/* Slide Indicators */}
-                    <div className="flex items-center gap-4 pt-8">
-                        {slides.map((_, i) => (
-                            <button
-                                key={i}
-                                onClick={() => {
-                                    setCurrentSlide(i)
-                                    setIsAutoPlaying(false)
-                                }}
-                                className={`h-1.5 rounded-full transition-all duration-500 ${i === currentSlide ? 'w-12 bg-accent-500' : 'w-2 bg-white/20 hover:bg-white/40'}`}
-                                aria-label={`Go to slide ${i + 1}`}
-                            />
-                        ))}
-                    </div>
-                </div>
-
-                {/* Right - Dynamic Visual (Slider Images) */}
-                <div className="relative hidden lg:block h-[600px] w-full">
-                    <div className="absolute inset-0 rounded-[2.5rem] overflow-hidden border border-white/10 shadow-2xl bg-navy-900/50 backdrop-blur-sm">
+                    {/* Right Image Slider */}
+                    <div className="relative h-[400px] lg:h-[600px] w-full rounded-3xl overflow-hidden shadow-2xl border border-white/10 group">
                         {slides.map((slide, index) => (
                             <div
-                                key={index}
-                                className={`absolute inset-0 transition-all duration-1000 ease-in-out transform ${index === currentSlide ? 'opacity-100 scale-100' : 'opacity-0 scale-110'}`}
+                                key={slide.id}
+                                className={`absolute inset-0 transition-all duration-1000 transform ${activeTab === index
+                                    ? 'opacity-100 scale-100 translate-x-0'
+                                    : 'opacity-0 scale-110 translate-x-10'
+                                    }`}
                             >
+                                <div className="absolute inset-0 bg-navy-900/20 mix-blend-multiply z-10" />
+                                <div className="absolute inset-x-0 bottom-0 h-1/2 bg-gradient-to-t from-navy-950/80 to-transparent z-10" />
                                 <img
                                     src={slide.image}
-                                    alt="Hero Visual"
-                                    className="w-full h-full object-cover opacity-60 mix-blend-overlay"
+                                    alt={slide.label}
+                                    className="w-full h-full object-cover"
                                 />
-                                <div className={`absolute inset-0 bg-gradient-to-tr ${slide.color} mix-blend-multiply opacity-40`} />
                             </div>
                         ))}
 
-                        {/* Overlay Card Example */}
-                        {/* <div className="absolute bottom-10 left-10 right-10 p-6 glass rounded-2xl border border-white/10 shadow-xl transition-all duration-700 delay-300 transform translate-y-0 opacity-100">
-                            <div className="flex items-center gap-4">
-                                <div className="w-12 h-12 rounded-full bg-accent-500 flex items-center justify-center text-white">
-                                    <CheckCircle2 size={24} />
-                                </div>
-                                <div>
-                                    <p className="text-white font-bold text-lg">Chartered Excellence</p>
-                                    <p className="text-white/60 text-sm">Authorized & Regulated Experts</p>
-                                </div>
+                        {/* Floating Badge */}
+                        <div className="absolute bottom-8 left-8 right-8 z-20">
+                            <div className="inline-flex flex-col p-4 bg-white/10 backdrop-blur-xl border border-white/20 rounded-2xl transform transition-all duration-500 hover:scale-105">
+                                <span className="text-accent-300 text-xs font-bold uppercase tracking-wider mb-1">Active Feature</span>
+                                <span className="text-white font-bold text-xl">{slides[activeTab].label}</span>
                             </div>
-                        </div> */}
+                        </div>
                     </div>
+
                 </div>
             </div>
         </section>

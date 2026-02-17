@@ -59,7 +59,7 @@ export default function About() {
     }, [])
 
     return (
-        <section id="about" ref={ref} className="py-12 lg:py-20 bg-white relative overflow-hidden">
+        <section id="about" ref={ref} className="py-10 lg:py-16 bg-white relative overflow-hidden">
             {/* Main about section */}
             <div className="max-w-7xl mx-auto px-6">
                 <div className="flex flex-col items-center max-w-4xl mx-auto text-center">
@@ -70,11 +70,11 @@ export default function About() {
                         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-navy-900 leading-tight">
                             Your Trusted <span className="gradient-text">Chartered</span> Partner
                         </h2>
-                        <p className="text-lg text-navy-600/70 leading-relaxed">
-                            Huban Accountants is a professional firm led by experienced finance professionals, offering expert accounting, taxation, and business advisory services. We deliver high-quality, tailored financial solutions to help businesses and individuals achieve sustainable success.
+                        <p className="text-lg text-navy-600/70 leading-relaxed text-left">
+                            Huban Accountants is a professional firm established by experienced finance professionals, delivering comprehensive accounting, taxation, and business advisory services. Operating across the UK and internationally, we provide integrated financial solutions—from bookkeeping and payroll to strategic consulting—offering the convenience of a one-stop service provider.
                         </p>
-                        <p className="text-navy-600/60 leading-relaxed">
-                            We adopt a proactive, client-focused approach to ensure you remain compliant, efficient, and financially strong. Whether you are an entrepreneur or an established business, we are dedicated to handling your financial matters with professionalism and care.
+                        <p className="text-navy-600/60 leading-relaxed text-left">
+                            We adopt a proactive, client-focused approach, ensuring every engagement is supported by customized strategies that go beyond compliance. Whether you are focused on growth or efficiency, our team delivers reliable, timely, and cost-effective insights to help you make informed decisions and achieve sustainable long-term success.
                         </p>
 
                         <div className="grid sm:grid-cols-2 gap-8 pt-8">
